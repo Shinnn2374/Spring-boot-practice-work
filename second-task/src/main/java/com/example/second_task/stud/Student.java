@@ -1,4 +1,4 @@
-package com.example.second_task;
+package com.example.second_task.stud;
 
 import lombok.Getter;
 import lombok.Setter;

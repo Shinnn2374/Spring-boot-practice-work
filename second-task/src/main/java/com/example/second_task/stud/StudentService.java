@@ -1,29 +1,20 @@
-package com.example.second_task;
+package com.example.second_task.stud;
 
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.shell.standard.ShellComponent;
-import org.springframework.shell.standard.ShellMethod;
-import org.springframework.shell.standard.ShellOption;
+import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-@ShellComponent
-public class StudentWorker
+@Service
+public class StudentService
 {
-    private final Map<Integer,Student> students = new HashMap<>();
+    private final Map<Integer, Student> students = new HashMap<>();
 
-    @Value("${app.create-students-on-start}")
-    private boolean add;
 
-    @ShellMethod(key = "add")
-    public void addStudent(@ShellOption(defaultValue = "true") boolean add)
+    public Student addStudent()
     {
-        this.add = add;
-        if (add == true) {
         int id = students.size() + 1;
         Student student = new Student();
         Scanner scanner = new Scanner(System.in);
@@ -39,10 +30,9 @@ public class StudentWorker
         student.setId(id);
         students.put(id,student);
         System.out.println(MessageFormat.format("Студент: {0} {1}, был добавлен в список", name, surname));
-    }
+        return student;
     }
 
-    @ShellMethod(key = "seeAll")
     public void seeAllStudents()
     {
         if (students.isEmpty()){
@@ -57,7 +47,6 @@ public class StudentWorker
         }
     }
 
-    @ShellMethod(key = "rm")
     public void removeStudent()
     {
         Scanner scanner = new Scanner(System.in);
@@ -70,7 +59,6 @@ public class StudentWorker
         }
     }
 
-    @ShellMethod(key = "rm -a")
     public void deleteAll()
     {
         students.clear();
