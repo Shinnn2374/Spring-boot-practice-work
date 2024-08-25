@@ -1,0 +1,2 @@
+app:
+  create-students-on-start: true

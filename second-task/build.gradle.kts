@@ -23,7 +23,7 @@ repositories {
 	mavenCentral()
 }
 
-extra["springShellVersion"] = "3.3.1"
+extra["springShellVersion"] = "3.2.5"
 
 dependencies {
 	implementation("org.springframework.shell:spring-shell-starter")
