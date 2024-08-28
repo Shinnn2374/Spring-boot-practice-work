@@ -29,7 +29,6 @@ public class StudentService
         student.setAge(age);
         student.setId(id);
         students.put(id,student);
-        System.out.println(MessageFormat.format("Студент: {0} {1}, был добавлен в список", name, surname));
         return student;
     }
 
