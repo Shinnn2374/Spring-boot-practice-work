@@ -1,51 +1,50 @@
 package com.example.skillboxthirdtask.service;
 
 import com.example.skillboxthirdtask.entity.Contact;
+import com.example.skillboxthirdtask.repository.ContactRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class ContactServiceImpl implements ContactService
 {
-    Map<Long, Contact> contactMap = new HashMap<>();
-    Integer key = 0;
+    private final ContactRepository contactRepository;
 
     @Override
-    public Contact findById(Long id) {
-        return contactMap.get(id);
+    public String listContacts() {
+        log.debug("CONTACT SERVICE SAY: listContacts");
+        contactRepository.listContacts();
+        return "";
     }
 
     @Override
     public String addContact(Contact contact) {
-        key++;
-        contactMap.put((long)key,contact);
+        log.debug("CONTACT SERVICE SAY: addContact");
+        contactRepository.addContact(contact);
         return "";
     }
 
     @Override
     public String updateContact(Long id, Contact contact) {
-        Contact existContact = contactMap.get(id);
-        existContact.setFirstName(contact.getFirstName());
-        existContact.setLastName(contact.getLastName());
-        existContact.setEmail(contact.getEmail());
-        existContact.setPhone(contact.getPhone());
-        contactMap.put(id, existContact);
+        log.debug("CONTACT SERVICE SAY: updateContact");
+        contactRepository.updateContact(id, contact);
         return "";
     }
 
     @Override
     public String deleteContact(Long id) {
-        contactMap.remove(id);
+        log.debug("CONTACT SERVICE SAY: deleteContact");
+        contactRepository.deleteContact(id);
         return "";
     }
 
     @Override
-    public String listContacts() {
-        for (Contact contact : contactMap.values()) {
-            System.out.println(contact.getFirstName() + " " + contact.getLastName() + " " + contact.getEmail() + " " + contact.getPhone());
-        }
-        return "";
+    public Contact findById(Long id) {
+        log.debug("CONTACT SERVICE SAY: findById");
+        contactRepository.findById(id);
+        return null;
     }
 }

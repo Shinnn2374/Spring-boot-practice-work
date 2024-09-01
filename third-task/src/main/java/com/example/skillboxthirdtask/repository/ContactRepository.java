@@ -1,8 +1,8 @@
-package com.example.skillboxthirdtask.service;
+package com.example.skillboxthirdtask.repository;
 
 import com.example.skillboxthirdtask.entity.Contact;
 
-public interface ContactService
+public interface ContactRepository
 {
     String listContacts();
     String addContact(Contact contact);
