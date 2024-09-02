@@ -16,29 +16,25 @@ public class ContactServiceImpl implements ContactService
     @Override
     public String listContacts() {
         log.debug("CONTACT SERVICE SAY: listContacts");
-        contactRepository.listContacts();
-        return "";
+        return contactRepository.listContacts();
     }
 
     @Override
     public String addContact(Contact contact) {
         log.debug("CONTACT SERVICE SAY: addContact");
-        contactRepository.addContact(contact);
-        return "";
+        return contactRepository.addContact(contact);
     }
 
     @Override
     public String updateContact(Long id, Contact contact) {
         log.debug("CONTACT SERVICE SAY: updateContact");
-        contactRepository.updateContact(id, contact);
-        return "";
+        return contactRepository.updateContact(id, contact);
     }
 
     @Override
     public String deleteContact(Long id) {
         log.debug("CONTACT SERVICE SAY: deleteContact");
-        contactRepository.deleteContact(id);
-        return "";
+        return contactRepository.deleteContact(id);
     }
 
     @Override
