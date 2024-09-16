@@ -1,16 +1,14 @@
-package com.example.springbootnewsportal.repository;
+package com.example.springbootnewsportal.service;
 
 import com.example.springbootnewsportal.model.Comment;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface CommentRepository
+public interface CommentService
 {
     List<Comment> findAll();
-    Optional<Comment> findById(Long commentId);
+    Comment findById(Long commentId);
     Comment save(Comment comment);
     Comment update(Comment comment);
     void deleteById(Long commentId);
-    void deleteByIdIn(List<Long> commentIds);
 }

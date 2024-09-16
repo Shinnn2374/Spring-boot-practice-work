@@ -1,24 +1,35 @@
 package com.example.springbootnewsportal.model;
 
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
+@Entity
+@Table(name = "users")
 public class User
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
+    @Column(name = "user_name")
+    private String name;
+
+    @OneToMany(mappedBy ="author", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
     public void addComment(Comment comment)
     {
         comments.add(comment);
     }
-
-    public void rmComment(Long commentId)
+    public void deleteComment(Long commentId)
     {
-        comments.remove(commentId);
+
     }
 }

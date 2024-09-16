@@ -1,13 +1,20 @@
 package com.example.springbootnewsportal.model;
 
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
-import java.util.List;
-
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
+@Entity
+@Table(name = "category")
 public class Category
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String categoryName;
-    private List<News> newsWithThatCategory;
+    @Column(name = "category_name")
+    private String name;
 }

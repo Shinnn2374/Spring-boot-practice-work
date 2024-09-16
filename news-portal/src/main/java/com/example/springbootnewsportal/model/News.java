@@ -1,19 +1,29 @@
 package com.example.springbootnewsportal.model;
 
-import ch.qos.logback.core.net.server.Client;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
-import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Entity
+@Builder
+@Table(name = "news")
 public class News
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Client author;
+    @ManyToOne
+    private User author;
+    @ManyToOne
+    private Category category;
+    @OneToMany
+    private List<Comment> comments = new ArrayList<>();
     private String title;
     private String content;
-    private Instant publishTime;
-    private Category category;
-    private List<Comment> comments;
 }

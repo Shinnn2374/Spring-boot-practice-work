@@ -1,14 +1,24 @@
 package com.example.springbootnewsportal.model;
 
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
-import java.time.Instant;
 
-@Data
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
+@Entity
+@Table(name = "comments")
 public class Comment
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String title;
     private String content;
-    private Instant createTime;
+    @ManyToOne(fetch = FetchType.LAZY)
     private User author;
 }
