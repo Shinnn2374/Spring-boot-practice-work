@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Scope;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Scope
@@ -23,7 +22,6 @@ public class User
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_name")
     private String username;
 
     @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -34,14 +32,14 @@ public class User
     @ToString.Exclude
     private List<News> createdNews = new ArrayList<>();
 
-    public void addComment(Comment comment)
-    {
-        if (comments == null){ comments = new ArrayList<>();}
-        comments.add(comment);
-    }
-
-    public void removeComment(Long commentId)
-    {
-        comments = comments.stream().filter(o -> o.getId().equals(commentId)).collect(Collectors.toList());
-    }
+//    public void addComment(Comment comment)
+//    {
+//        if (comments == null){ comments = new ArrayList<>();}
+//        comments.add(comment);
+//    }
+//
+//    public void removeComment(Long commentId)
+//    {
+//        comments = comments.stream().filter(o -> o.getId().equals(commentId)).collect(Collectors.toList());
+//    }
 }
