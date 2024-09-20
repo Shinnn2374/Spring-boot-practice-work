@@ -11,5 +11,5 @@ public interface CommentService
     Comment save(Comment comment);
     Comment update(Comment comment);
     void deleteById(Long commentId);
-    void deleteByIdInd(List<Comment> ids);
+    void deleteByIdInd(List<Long> ids);
 }
