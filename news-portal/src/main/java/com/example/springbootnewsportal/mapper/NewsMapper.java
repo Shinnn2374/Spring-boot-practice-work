@@ -15,14 +15,14 @@ import java.util.stream.Collectors;
 public interface NewsMapper
 {
     News requestToNews(UpsertNewsRequest request);
-    @Mapping(source = "user_id", target = "id")
+    @Mapping(source = "news_id", target = "id")
     News requestToNews(Long newsId, UpsertNewsRequest request);
     NewsResponse newsToResponse(News news);
 
     default NewsListResponse newsListToNewsResponseList(List<News> news)
     {
         NewsListResponse response = new NewsListResponse();
-        response.setNews(news.stream().map(this::categoryToResponse)
+        response.setNews(news.stream().map(this::newsToResponse)
                 .collect(Collectors.toList()));
         return response;
     }
