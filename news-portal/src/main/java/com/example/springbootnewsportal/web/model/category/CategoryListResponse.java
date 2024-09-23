@@ -1,4 +1,12 @@
 package com.example.springbootnewsportal.web.model.category;
 
-public class CategoryListResponse {
+import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
+public class CategoryListResponse
+{
+    private List<CategoryResponse> categoryResponses = new ArrayList<>();
 }

@@ -1,4 +1,11 @@
 package com.example.springbootnewsportal.web.model.comment;
 
-public class UpsertCommentRequest {
+import lombok.Data;
+
+@Data
+public class UpsertCommentRequest
+{
+    private Long userId;
+    private String content;
+    private String title;
 }

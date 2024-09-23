@@ -1,4 +1,21 @@
 package com.example.springbootnewsportal.web.model.user;
 
-public class UserResponse {
+import com.example.springbootnewsportal.model.Comment;
+import com.example.springbootnewsportal.model.News;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserResponse
+{
+    private Long id;
+    private String username;
+    private List<Comment> comments = new ArrayList<>();
+    private List<News> createdNews = new ArrayList<>();
 }

@@ -1,4 +1,12 @@
 package com.example.springbootnewsportal.web.model.comment;
 
-public class CommentListResponse {
+import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
+public class CommentListResponse
+{
+    private List<CommentResponse> comments = new ArrayList<>();
 }

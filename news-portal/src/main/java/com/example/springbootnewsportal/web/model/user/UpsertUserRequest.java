@@ -1,4 +1,9 @@
 package com.example.springbootnewsportal.web.model.user;
 
-public class UpsertUserRequest {
+import lombok.Data;
+
+@Data
+public class UpsertUserRequest
+{
+    private String username;
 }
