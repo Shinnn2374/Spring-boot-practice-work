@@ -17,7 +17,7 @@ public interface NewsMapper
     News requestToNews(UpsertNewsRequest request);
     @Mapping(source = "user_id", target = "id")
     News requestToNews(Long newsId, UpsertNewsRequest request);
-    NewsResponse categoryToResponse(News news);
+    NewsResponse newsToResponse(News news);
 
     default NewsListResponse newsListToNewsResponseList(List<News> news)
     {
