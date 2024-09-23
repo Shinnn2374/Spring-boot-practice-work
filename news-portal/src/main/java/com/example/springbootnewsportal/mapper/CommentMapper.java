@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CommentMapper
 {
-    Comment requestToComments(UpsertCommentRequest request);
+    Comment requestToComment(UpsertCommentRequest request);
     @Mapping(source = "user_id", target = "id")
     Comment requestToComment(Long commentId, UpsertCommentRequest request);
     CommentResponse commentToResponse(Comment comment);
