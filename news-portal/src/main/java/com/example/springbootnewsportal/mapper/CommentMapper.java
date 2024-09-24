@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 public interface CommentMapper
 {
     Comment requestToComment(UpsertCommentRequest request);
-    @Mapping(source = "comment_id", target = "id")
     Comment requestToComment(Long commentId, UpsertCommentRequest request);
     CommentResponse commentToResponse(Comment comment);
 

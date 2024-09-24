@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 public interface CategoryMapper
 {
     Category requestToCategory(UpsertCategoryRequest request);
-    @Mapping(source = "category_id", target = "id")
     Category requestToCategory(Long categoryId, UpsertCategoryRequest request);
     CategoryResponse categoryToResponse(Category category);
 

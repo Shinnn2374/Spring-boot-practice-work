@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 public interface NewsMapper
 {
     News requestToNews(UpsertNewsRequest request);
-    @Mapping(source = "news_id", target = "id")
     News requestToNews(Long newsId, UpsertNewsRequest request);
     NewsResponse newsToResponse(News news);
 
