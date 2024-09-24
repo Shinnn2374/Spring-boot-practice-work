@@ -1,5 +1,7 @@
 package com.example.springbootnewsportal.mapper;
 
+import com.example.springbootnewsportal.model.Comment;
+import com.example.springbootnewsportal.model.News;
 import com.example.springbootnewsportal.model.User;
 import com.example.springbootnewsportal.web.model.user.UpsertUserRequest;
 import com.example.springbootnewsportal.web.model.user.UserListResponse;
@@ -11,10 +13,11 @@ import org.mapstruct.ReportingPolicy;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = {Comment.class, News.class})
 public interface UserMapper
 {
     User requestToUser(UpsertUserRequest request);
+    @Mapping(source = "userId", target = "id")
     User requestToUser(Long userId, UpsertUserRequest request);
     UserResponse userToResponse(User user);
 
