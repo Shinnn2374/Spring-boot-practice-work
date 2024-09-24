@@ -5,14 +5,17 @@ import com.example.springbootnewsportal.model.User;
 import com.example.springbootnewsportal.repositories.DataBaseUserRepository;
 import com.example.springbootnewsportal.service.UserService;
 import com.example.springbootnewsportal.utils.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class DataBaseUserService implements UserService
 {
+    @Autowired
     private DataBaseUserRepository repository;
 
     @Override

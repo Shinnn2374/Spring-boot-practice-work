@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Scope;
 import java.util.List;
 
 @Getter
+@Setter
 @Scope
 @Schema
 @NoArgsConstructor

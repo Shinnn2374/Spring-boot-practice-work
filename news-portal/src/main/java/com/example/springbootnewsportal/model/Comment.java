@@ -6,6 +6,7 @@ import lombok.*;
 import org.springframework.context.annotation.Scope;
 
 @Getter
+@Setter
 @Scope
 @Schema
 @NoArgsConstructor

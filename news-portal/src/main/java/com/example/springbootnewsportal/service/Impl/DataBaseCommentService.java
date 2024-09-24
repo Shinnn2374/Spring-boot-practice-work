@@ -2,6 +2,7 @@ package com.example.springbootnewsportal.service.Impl;
 
 import com.example.springbootnewsportal.exception.EntityNotFoundException;
 import com.example.springbootnewsportal.model.Comment;
+import com.example.springbootnewsportal.model.User;
 import com.example.springbootnewsportal.repositories.DataBaseCommentRepository;
 import com.example.springbootnewsportal.service.CommentService;
 import com.example.springbootnewsportal.utils.BeanUtils;
@@ -14,6 +15,7 @@ import java.util.List;
 public class DataBaseCommentService implements CommentService
 {
     private DataBaseCommentRepository repository;
+    private DataBaseUserService service;
 
     @Override
     public List<Comment> findAll()
@@ -31,15 +33,19 @@ public class DataBaseCommentService implements CommentService
     @Override
     public Comment save(Comment comment)
     {
+        User newUser= service.findById(comment.getUser().getId());
+        comment.setUser(newUser);
         return repository.save(comment);
     }
 
     @Override
     public Comment update(Comment comment)
     {
-        Comment currentComment = findById(comment.getId());
-        BeanUtils.copyNonNullProperties(comment, currentComment);
-        return repository.save(comment);
+        User updatedUser = service.findById(comment.getUser().getId());
+        Comment existComment = findById(comment.getId());
+        existComment.setUser(updatedUser);
+        BeanUtils.copyNonNullProperties(comment, existComment);
+        return repository.save(existComment);
     }
 
     @Override
