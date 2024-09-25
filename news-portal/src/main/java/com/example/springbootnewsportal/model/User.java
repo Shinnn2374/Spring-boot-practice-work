@@ -1,7 +1,7 @@
 package com.example.springbootnewsportal.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -17,8 +17,34 @@ import java.util.List;
 @Entity(name = "clients")
 public class User
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "user_name")
     private String userName;
+    @OneToMany(mappedBy = "",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ToString.Exclude
     private List<Comment> comments = new ArrayList<>();
+    @OneToMany(mappedBy = "", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ToString.Exclude
     private List<News> newsList = new ArrayList<>();
+
+    public void addComment(Comment comment)
+    {
+        if (comments == null){comments = new ArrayList<>();}
+        comments.add(comment);
+    }
+    public void rmComment(Comment comment)
+    {
+        comments.remove(comment);
+    }
+    public void createNews(News news)
+    {
+        if (newsList == null){newsList = new ArrayList<>();}
+        newsList.add(news);
+    }
+    public void rmNews(News news)
+    {
+        newsList.remove(news);
+    }
 }
