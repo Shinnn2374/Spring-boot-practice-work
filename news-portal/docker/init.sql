@@ -1,1 +1,1 @@
-CREATE SCHEMA IF NOT exists app_schema;
+CREATE SCHEMA IF NOT EXISTS app_schema;
