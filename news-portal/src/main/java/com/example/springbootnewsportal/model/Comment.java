@@ -4,6 +4,7 @@ import java.time.Instant;
 
 public class Comment
 {
+    private Long id;
     private String title;
     private String content;
     private User author;

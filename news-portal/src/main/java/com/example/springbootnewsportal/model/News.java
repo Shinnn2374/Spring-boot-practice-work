@@ -5,6 +5,7 @@ import java.util.List;
 
 public class News
 {
+    private Long id;
     private String title;
     private String content;
     private User author;
