@@ -6,10 +6,14 @@ import com.example.springbootnewsportal.model.User;
 import com.example.springbootnewsportal.repository.DBCommentRepository;
 import com.example.springbootnewsportal.service.CommentService;
 import com.example.springbootnewsportal.utils.BeanUtils;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class DBCommentService implements CommentService
 {
     private DBCommentRepository repository;

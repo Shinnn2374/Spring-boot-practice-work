@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity(name = "clients")
+@Entity(name = "users")
 public class User
 {
     @Id

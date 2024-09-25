@@ -14,7 +14,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity(name = "clients")
+@Entity(name = "comments")
 public class Comment
 {
     @Id

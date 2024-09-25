@@ -6,10 +6,14 @@ import com.example.springbootnewsportal.model.User;
 import com.example.springbootnewsportal.repository.DBNewsRepository;
 import com.example.springbootnewsportal.service.NewsService;
 import com.example.springbootnewsportal.utils.BeanUtils;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class DBNewsService implements NewsService
 {
     private DBNewsRepository repository;

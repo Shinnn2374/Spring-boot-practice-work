@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity(name = "clients")
+@Entity(name = "news")
 public class News
 {
     @Id
@@ -28,6 +28,7 @@ public class News
     private User author;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
     private Category category;
     @CreationTimestamp
     private Instant createTime;
