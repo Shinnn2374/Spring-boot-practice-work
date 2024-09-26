@@ -8,6 +8,6 @@ spring:
       connection-init-sql: CREATE SCHEMA IF NOT EXISTS app_schema
       connection-timeout: 1000
   jpa:
-    generate-ddl: false
+    generate-ddl: true
   main:
-    allow-circular-references: true
+    allow-circular-references: false
