@@ -1,5 +1,7 @@
 package com.example.springbootnewsportal.web.model.user;
 
+import com.example.springbootnewsportal.web.model.comment.CommentResponse;
+import com.example.springbootnewsportal.web.model.news.NewsResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
