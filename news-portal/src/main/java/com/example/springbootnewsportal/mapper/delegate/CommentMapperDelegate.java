@@ -4,11 +4,9 @@ import com.example.springbootnewsportal.mapper.CommentMapper;
 import com.example.springbootnewsportal.model.Comment;
 import com.example.springbootnewsportal.service.impl.DBUserService;
 import com.example.springbootnewsportal.web.model.comment.UpsertCommentRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class CommentMapperDelegate implements CommentMapper
 {
-    @Autowired
     private DBUserService service;
 
     @Override
@@ -17,7 +15,7 @@ public abstract class CommentMapperDelegate implements CommentMapper
         comment.setId(request.getId());
         comment.setTitle(request.getTitle());
         comment.setCreateTime(request.getCreateTime());
-        comment.setAuthor(service.findById(request));
+        comment.setAuthor(service.findById(request.getAuthor().getId()));
         return comment;
     }
 
