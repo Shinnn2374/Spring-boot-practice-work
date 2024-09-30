@@ -23,7 +23,6 @@ public class Comment
     private String title;
     private String content;
     @ManyToOne
-    @JoinColumn(name = "user_id")
     @ToString.Exclude
     private User author;
     @CreationTimestamp
