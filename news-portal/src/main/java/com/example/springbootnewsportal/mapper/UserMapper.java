@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 public interface UserMapper
 {
     User requestToUser(UpsertUserRequest request);
-    @Mapping(source = "userId", target = "id")
-    User requestToUser(Long userId, UpsertUserRequest request);
+    @Mapping(source = "id", target = "id")
+    User requestToUser(Long id, UpsertUserRequest request);
     UserResponse userToResponse(User user);
     default UserListResponse userListToUserResponseList(List<User> users)
     {

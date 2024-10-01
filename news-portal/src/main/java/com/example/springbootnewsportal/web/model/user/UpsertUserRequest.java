@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpsertUserRequest
 {
+    private Long id;
     private String username;
 }
