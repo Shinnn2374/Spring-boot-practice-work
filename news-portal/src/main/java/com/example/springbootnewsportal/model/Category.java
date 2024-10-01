@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 @Setter
+@Getter
 @Schema
 @Builder
 @AllArgsConstructor
