@@ -11,4 +11,6 @@ import lombok.NoArgsConstructor;
 public class UpsertCommentRequest
 {
     private User author;
+    private String title;
+    private Long id;
 }

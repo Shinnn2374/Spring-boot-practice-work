@@ -7,6 +7,7 @@ import com.example.springbootnewsportal.repository.UserRepository;
 import com.example.springbootnewsportal.service.UserService;
 import com.example.springbootnewsportal.utils.BeanUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService
 {
+    @Autowired
     private UserRepository repository;
 
 
