@@ -21,10 +21,11 @@ public class News
     private Long id;
     private String title;
     private String content;
-    @ManyToOne
+    @OneToOne
+    @ToString.Exclude
     private User author;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> commentsToNews;
-    @ManyToOne
+    @OneToOne
     private Category category;
 }
