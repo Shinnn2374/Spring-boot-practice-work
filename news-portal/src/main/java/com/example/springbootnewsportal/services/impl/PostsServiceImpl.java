@@ -7,6 +7,7 @@ import com.example.springbootnewsportal.repositoryes.PostsRepository;
 import com.example.springbootnewsportal.services.PostsService;
 import com.example.springbootnewsportal.utils.BeanUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostsServiceImpl implements PostsService
 {
+    @Autowired
     private PostsRepository postsRepository;
 
     @Override
