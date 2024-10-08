@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface CategoryMapper
 {
-    Category requestToOrder(CategoryRequest request);
+    Category requestToCategory(CategoryRequest request);
 
     @Mapping(source = "categoryId", target = "id")
     Category requestToCategory(Long categoryId, CategoryRequest request);
