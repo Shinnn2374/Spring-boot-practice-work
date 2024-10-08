@@ -6,10 +6,14 @@ import com.example.springbootnewsportal.model.User;
 import com.example.springbootnewsportal.repositoryes.PostsRepository;
 import com.example.springbootnewsportal.services.PostsService;
 import com.example.springbootnewsportal.utils.BeanUtils;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class PostsServiceImpl implements PostsService
 {
     private PostsRepository postsRepository;

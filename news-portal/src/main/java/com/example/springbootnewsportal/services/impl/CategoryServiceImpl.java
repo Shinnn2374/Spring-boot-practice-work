@@ -5,10 +5,14 @@ import com.example.springbootnewsportal.model.Category;
 import com.example.springbootnewsportal.repositoryes.CategoryRepository;
 import com.example.springbootnewsportal.services.CategoryService;
 import com.example.springbootnewsportal.utils.BeanUtils;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService
 {
     private CategoryRepository categoryRepository;

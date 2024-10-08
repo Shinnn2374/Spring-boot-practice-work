@@ -6,10 +6,11 @@ import com.example.springbootnewsportal.web.model.category.CategoryRequest;
 import com.example.springbootnewsportal.web.model.category.CategoryResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CategoryMapper
 {
     Category requestToCategory(CategoryRequest request);
