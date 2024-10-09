@@ -6,6 +6,7 @@ import com.example.springbootnewsportal.services.CommentService;
 import com.example.springbootnewsportal.web.model.comment.CommentListResponse;
 import com.example.springbootnewsportal.web.model.comment.CommentRequest;
 import com.example.springbootnewsportal.web.model.comment.CommentResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,14 +33,14 @@ public class CommentController
     }
 
     @PostMapping
-    public ResponseEntity<CommentResponse> create(@RequestBody CommentRequest request)
+    public ResponseEntity<CommentResponse> create(@RequestBody @Valid CommentRequest request)
     {
         Comment newClient = commentService.save(commentMapper.requestToComment(request));
         return ResponseEntity.status(HttpStatus.CREATED).body(commentMapper.commentToResponse(newClient));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CommentResponse> update(@PathVariable Long id, @RequestBody CommentRequest request)
+    public ResponseEntity<CommentResponse> update(@PathVariable Long id, @RequestBody @Valid CommentRequest request)
     {
         Comment updatedComment = commentService.update(commentMapper.requestToComment(id, request));
         return ResponseEntity.ok(commentMapper.commentToResponse(updatedComment));

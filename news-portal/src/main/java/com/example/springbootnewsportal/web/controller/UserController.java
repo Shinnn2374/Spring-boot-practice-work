@@ -6,6 +6,7 @@ import com.example.springbootnewsportal.services.UserService;
 import com.example.springbootnewsportal.web.model.user.UserListResponse;
 import com.example.springbootnewsportal.web.model.user.UserRequest;
 import com.example.springbootnewsportal.web.model.user.UserResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,14 +33,14 @@ public class UserController
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> create(@RequestBody UserRequest request)
+    public ResponseEntity<UserResponse> create(@RequestBody @Valid UserRequest request)
     {
         User newUser = userService.save(userMapper.requestToUser(request));
         return ResponseEntity.status(HttpStatus.CREATED).body(userMapper.userToResponse(newUser));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponse> update(@PathVariable Long id, @RequestBody UserRequest request)
+    public ResponseEntity<UserResponse> update(@PathVariable Long id, @RequestBody @Valid UserRequest request)
     {
         User updatedUser = userService.update(userMapper.requestToUser(id, request));
         return ResponseEntity.ok(userMapper.userToResponse(updatedUser));
