@@ -1,7 +1,9 @@
 package com.example.springbootnewsportal.services;
 
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import com.example.springbootnewsportal.entity.Book;
+import com.example.springbootnewsportal.entity.Category;
+import com.example.springbootnewsportal.repository.BookRepository;
+import com.example.springbootnewsportal.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -41,7 +43,13 @@ public class BookService {
 
     @CacheEvict(value = {"bookCache", "booksByCategoryCache"}, allEntries = true, beforeInvocation = true)
     public Book updateBook(Long id, Book bookDetails) {
-        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
+        if (bookDetails == null) {
+            throw new IllegalArgumentException("Book details cannot be null");
+        }
+
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Book not found"));
+
         book.setTitle(bookDetails.getTitle());
         book.setAuthor(bookDetails.getAuthor());
         book.setCategory(bookDetails.getCategory());
