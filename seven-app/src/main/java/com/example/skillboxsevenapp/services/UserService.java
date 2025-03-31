@@ -17,7 +17,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Mono<User> findUserByID(String id) {
+    public Mono<User> findUserById(String id) {
         return userRepository.findById(id);
     }
 
@@ -26,7 +26,7 @@ public class UserService {
     }
 
     public Mono<User> updateUser(String id, User user) {
-        return findUserByID(id).flatMap(itemForUpdate ->{
+        return findUserById(id).flatMap(itemForUpdate ->{
             if (StringUtils.hasText(user.getUsername())) {
                 itemForUpdate.setUsername(user.getUsername());
             }
