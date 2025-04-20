@@ -5,6 +5,7 @@ import com.example.skillboxsevenapp.model.UserModel;
 import com.example.skillboxsevenapp.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -16,11 +17,13 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     public Flux<UserModel> getAllUsers() {
         return userService.findAll().map(UserModel::from);
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     public Mono<ResponseEntity<UserModel>> getUserById(@PathVariable String id) {
         return userService.findUserById(id)
                 .map(UserModel::from)
@@ -29,6 +32,7 @@ public class UserController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     public Mono<ResponseEntity<UserModel>> createUser(@RequestBody UserModel userModel) {
         return userService.saveUser(User.from(userModel))
                 .map(UserModel::from)
@@ -36,6 +40,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     public Mono<ResponseEntity<UserModel>> updateUser(@PathVariable String id, @RequestBody UserModel userModel) {
         return userService.updateUser(id, User.from(userModel))
                 .map(UserModel::from)
@@ -43,6 +48,8 @@ public class UserController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     public Mono<ResponseEntity<Void>> deleteUser(@PathVariable String id) {
         return userService.deleteUserById(id).then(Mono.just(ResponseEntity.noContent().build()));
     }

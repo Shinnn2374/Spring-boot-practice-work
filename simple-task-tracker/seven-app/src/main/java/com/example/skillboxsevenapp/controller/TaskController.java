@@ -7,6 +7,7 @@ import com.example.skillboxsevenapp.services.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.codec.ServerSentEvent;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -19,11 +20,13 @@ public class TaskController {
     private final TaskPublisher publisher;
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     public Flux<TaskModel> getTasks() {
         return taskService.findAll().map(TaskModel::from);
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('USER', 'MANAGER')")
     public Mono<ResponseEntity<TaskModel>> getTaskById(@PathVariable String id) {
         return taskService.findTaskById(id)
                 .map(TaskModel::from)
@@ -32,6 +35,7 @@ public class TaskController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('MANAGER')")
     public Mono<ResponseEntity<TaskModel>> createTask(@RequestBody TaskModel taskModel) {
         return taskService.saveTask(Task.from(taskModel))
                 .map(TaskModel::from)
@@ -40,6 +44,7 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('MANAGER')")
     public Mono<ResponseEntity<TaskModel>> updateTask(@PathVariable String id, @RequestBody TaskModel taskModel) {
         return taskService.updateTask(id,Task.from(taskModel))
                 .map(TaskModel::from)
@@ -48,6 +53,7 @@ public class TaskController {
     }
 
     @GetMapping("/stream")
+    @PreAuthorize("hasRole('MANAGER')")
     public Flux<ServerSentEvent<TaskModel>> getTasksStream() {
         return publisher.getUpdatesSink()
                 .asFlux()
@@ -55,6 +61,7 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('MANAGER')")
     public Mono<ResponseEntity<Void>> deleteTask(@PathVariable String id) {
         return taskService.deleteTaskById(id).then(Mono.just(ResponseEntity.noContent().build()));
     }
