@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,34 +22,30 @@ public class CommentController
     private final CommentMapper commentMapper;
 
     @GetMapping
-    public ResponseEntity<CommentListResponse> findAll()
-    {
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_MODERATOR')")
+    public ResponseEntity<CommentListResponse> findAll() {
         return ResponseEntity.ok(commentMapper.commentListToResponse(commentService.findAll()));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CommentResponse> findById(@PathVariable Long id)
-    {
+    public ResponseEntity<CommentResponse> findById(@PathVariable Long id) {
         return ResponseEntity.ok(commentMapper.commentToResponse(commentService.findById(id)));
     }
 
     @PostMapping
-    public ResponseEntity<CommentResponse> create(@RequestBody @Valid CommentRequest request)
-    {
+    public ResponseEntity<CommentResponse> create(@RequestBody @Valid CommentRequest request) {
         Comment newClient = commentService.save(commentMapper.requestToComment(request));
         return ResponseEntity.status(HttpStatus.CREATED).body(commentMapper.commentToResponse(newClient));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CommentResponse> update(@PathVariable Long id, @RequestBody @Valid CommentRequest request)
-    {
+    public ResponseEntity<CommentResponse> update(@PathVariable Long id, @RequestBody @Valid CommentRequest request) {
         Comment updatedComment = commentService.update(commentMapper.requestToComment(id, request));
         return ResponseEntity.ok(commentMapper.commentToResponse(updatedComment));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id)
-    {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         commentService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,34 +22,32 @@ public class CategoryController
     private final CategoryMapper categoryMapper;
 
     @GetMapping
-    public ResponseEntity<CategoryListResponse> findAll()
-    {
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_MODERATOR')")
+    public ResponseEntity<CategoryListResponse> findAll() {
         return ResponseEntity.ok(categoryMapper.categoryListToResponse(categoryService.findAll()));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoryResponse> findById(@PathVariable Long id)
-    {
+    public ResponseEntity<CategoryResponse> findById(@PathVariable Long id) {
         return ResponseEntity.ok(categoryMapper.categoryToResponse(categoryService.findById(id)));
     }
 
     @PostMapping
-    public ResponseEntity<CategoryResponse> create(@RequestBody @Valid CategoryRequest request)
-    {
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
+    public ResponseEntity<CategoryResponse> create(@RequestBody @Valid CategoryRequest request) {
         Category newCategory = categoryService.save(categoryMapper.requestToCategory(request));
         return ResponseEntity.status(HttpStatus.CREATED).body(categoryMapper.categoryToResponse(newCategory));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryResponse> update(@PathVariable Long id, @RequestBody @Valid CategoryRequest request)
-    {
+    public ResponseEntity<CategoryResponse> update(@PathVariable Long id, @RequestBody @Valid CategoryRequest request) {
         Category updatedCategory = categoryService.update(categoryMapper.requestToCategory(id, request));
         return ResponseEntity.ok(categoryMapper.categoryToResponse(updatedCategory));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id)
-    {
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         categoryService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
