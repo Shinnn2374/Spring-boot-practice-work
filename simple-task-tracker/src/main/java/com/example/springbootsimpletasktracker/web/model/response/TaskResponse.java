@@ -1,6 +1,5 @@
 package com.example.springbootsimpletasktracker.web.model.response;
 
-import com.example.springbootsimpletasktracker.web.model.TaskStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
